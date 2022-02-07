@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="WithLithum.UnPad.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WithLithum.UnPad"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:wct="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:richText="using:Microsoft.Toolkit.Uwp.UI.Controls.TextToolbarFormats.RichText"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    PreviewKeyDown="Page_PreviewKeyDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40px" />
+            <RowDefinition Height="45px" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30px" />
+        </Grid.RowDefinitions>
+        <muxc:MenuBar x:Name="MenuMain" Grid.Row="0">
+            <muxc:MenuBarItem Title="File">
+                <MenuFlyoutItem Text="New" x:Name="ItemNew" Click="ItemNew_Click"/>
+                <MenuFlyoutItem Text="Open..." x:Name="ItemOpen" Click="ItemOpen_Click" />
+                <MenuFlyoutItem Text="Save" x:Name="ItemSave" Click="ItemSave_Click"/>
+                <MenuFlyoutItem Text="Save As" x:Name="ItemSaveAs" Click="ItemSaveAs_Click"/>
+                <MenuFlyoutItem Text="Exit" x:Name="ItemExit" Click="ItemExit_Click"/>
+            </muxc:MenuBarItem>
+
+            <muxc:MenuBarItem Title="Edit">
+                <MenuFlyoutItem Text="Undo"/>
+                <MenuFlyoutItem Text="Cut"/>
+                <MenuFlyoutItem Text="Copy"/>
+                <MenuFlyoutItem Text="Paste"/>
+            </muxc:MenuBarItem>
+
+            <muxc:MenuBarItem Title="Help">
+                <MenuFlyoutItem Text="About" x:Name="ItemAbout" Click="AboutClicked"/>
+            </muxc:MenuBarItem>
+        </muxc:MenuBar>
+        <wct:TextToolbar x:Name="Toolbar" Grid.Row="1" Editor="{x:Bind EditMain}">
+            <wct:TextToolbar.Formatter>
+                <richText:RichTextFormatter />
+            </wct:TextToolbar.Formatter>
+        </wct:TextToolbar>
+        <ScrollViewer Grid.Row="2">
+            <RichEditBox x:Name="EditMain" TextChanged="EditMain_TextChanged"
+                         RequestedTheme="Light">
+            </RichEditBox>
+        </ScrollViewer>
+        <TextBlock Padding="10, 5" Grid.Row="3" x:Name="TextStatus">
+            Ready
+        </TextBlock>
+    </Grid>
+</Page>
